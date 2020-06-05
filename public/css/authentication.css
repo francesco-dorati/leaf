@@ -1,0 +1,19 @@
+#pills-login-tab.active,
+#pills-register-tab.active{
+    background-color: #28a745 !important;
+}
+
+#pills-login-tab:not(.active),
+#pills-register-tab:not(.active){
+    color: #28a745 !important;
+}
+
+[id $= 'submit']{
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+form input:focus{
+    border-color: #1e7e34 !important;
+    box-shadow: 0 0 0 .2rem rgba(72,180,97,.5) !important;
+}
