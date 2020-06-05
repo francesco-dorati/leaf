@@ -4,10 +4,8 @@ user {
     username,
     email,
     password,
-    code,
     imgPath,
     admin,                                   // true or undefined
-    notifications,
     chats [
         {   
             username,
@@ -21,6 +19,8 @@ user {
             ]
         }   
     ]
+notifications,
+code,
 }
 
 --------------
