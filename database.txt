@@ -3,9 +3,15 @@ user {
     surname,
     username,
     email,
+<<<<<<< HEAD
     password,
     imgPath,
     admin,                                   // true or undefined
+=======
+    imgPath,
+    admin,                                   // true or undefined
+    notifications,
+>>>>>>> a1d33247239055b7b68c04c7655dea345eaa96f3
     chats [
         {   
             username,
@@ -19,8 +25,11 @@ user {
             ]
         }   
     ]
+<<<<<<< HEAD
 notifications,
 code,
+=======
+>>>>>>> a1d33247239055b7b68c04c7655dea345eaa96f3
 }
 
 --------------
