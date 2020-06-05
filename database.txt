@@ -3,6 +3,8 @@ user {
     surname,
     username,
     email,
+    password,
+    code,
     imgPath,
     admin,                                   // true or undefined
     notifications,
