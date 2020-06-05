@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
 const app = express();
-const port = 80;
+const port = process.env.PORT || 80;
 
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
