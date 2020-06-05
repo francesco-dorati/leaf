@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" id="chat">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="/images/properties.png"/>
+
+    <title>Leaf - Chat</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script defer src="/js/jquery.min.js"></script>
+    <script defer src="/js/bootstrap.min.js"></script>
+
+    <!-- Socket  -->
+    <script defer src="/socket.io/socket.io.js"></script>
+
+    <!-- Moment -->
+    <script defer src="/js/moment.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- JS -->
+    <script type='text/javascript'>
+        window.user = <%-JSON.stringify(user)%>;
+        window.receiver = <%-JSON.stringify(username)%>
+    </script>
+    <script defer src="/js/chat.js"></script>
+    
+</head>
+<body class="bg-success">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-light">
+        <a class="navbar-brand text-success" href="/">
+            <img src="/images/properties.png" width="30" height="30" class="d-inline-block align-top">
+            Leaf
+        </a>
+
+
+
+        <div class="collapse navbar-collapse" id="navbarItems">
+            <ul class="navbar-nav mr-auto ml-3">
+                <li class="nav-item mr-1"><!-- For ACTIVE use font-weigt-bold -->
+                    <a class="nav-link text-success" href="/">Home</a>
+                </li>
+                <li class="nav-item mr-1">
+                    <a class="nav-link text-success" href="/discover">Discover</a>
+                </li>
+                
+            </ul>
+        </div>
+            <!-- TO BE CHANGED WITH LOGIN/REGISTER -->
+            <a class="btn btn-outline-success ml-auto mr-3" href="/profile">
+                <img class="d-inline-block align-top mr-lg-2 rounded-circle" src="<%= user.imgPath || '/images/profile-picture.jpg' %>" width="25" height="25">
+                <span class="mr-1 d-none d-lg-inline"><%=user.name%></span>
+            </a>
+            <a class="btn btn-outline-<%= user.notifications ? 'danger' : 'success' %> active" href="/chat">
+                <!-- WHEN MESSAGE RECEIVED: CHANGE <A> COLOR || FILL THE SVG  || BADGE -->
+                <svg class="bi bi-chat mb-1" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.678 11.894a1 1 0 01.287.801 10.97 10.97 0 01-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 01.71-.074A8.06 8.06 0 008 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 01-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 00.244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 01-2.347-.306c-.52.263-1.639.742-3.468 1.105z" clip-rule="evenodd"/>
+                </svg>
+                <!-- <span class="badge badge-danger">9</span> -->
+            </a>
+            <a class="btn btn-outline-success ml-3 d-lg-none" href="/discover">
+                <svg class="bi bi-search mb-1" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                </svg>
+            </a>
+    </nav><!-- NAVBAR -->
+    
+    <section class="container">
+        <!-- TOASTS WITH DIFFERENT O COLOR AND POSITION -->
+        <div class="rounded col-lg-12 col-xl-10 bg-light mx-auto mt-4" id="message-canvaas">
+          <% moment().format(); %>
+          <% const chat = user.chats.filter((chat) => chat.username == username); %>
+          <% if (chat[0]) { %> 
+            <% for (const message of chat[0].messages) { %>
+              <div class="col-10 col-lg-7 py-3 <%= message.sent ? 'ml-auto' : 'mr-auto' %>">
+                  <div class="toast <%= message.sent ? 'bg-success text-white' : '' %>">
+                      <div class="toast-header">
+                        <img src="/images/profile-picture.jpg" class="rounded mr-2"  height="20" width="20">
+                        <strong class="mr-auto"><a class="profile-link" href="<%= message.sent ? '/profile' : `/user/${username}` %>"><%= message.sent ? user.username : username %></a></strong>
+                        <small><%=moment(message.time).fromNow() %></small>
+                      </div>
+                      <div class="toast-body">
+                        <%= message.body %>
+                      </div>
+                    </div>
+              </div>
+            <% } %>  
+          <% } %> 
+
+        </div>
+
+        
+        <div class="rounded ol-lg-12 col-xl-10 bg-light mx-auto mt-3">
+            <form class="form-inline py-3" id="message-form" action="javascript: " autocomplete="off">
+               <input class="form-control col" type="text" placeholder="Send a message to <%= username%>..." name="body" id="message-input" autofocus>
+               <button class="btn btn-success ml-3" type="submit">
+                    <svg class="bi bi-arrow-up mb-1" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8 3.707 5.354 6.354a.5.5 0 11-.708-.708l3-3z" clip-rule="evenodd"/>
+                    </svg>    
+                   Send
+               </button>
+            </form>
+        </div>
+
+    </section>
+</body>
+</html>

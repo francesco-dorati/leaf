@@ -1,0 +1,40 @@
+user {
+    name,
+    surname,
+    username,
+    email,
+    imgPath,
+    admin,                                   // true or undefined
+    notifications,
+    chats [
+        {   
+            username,
+            notifications,
+            messages [
+                {
+                    type,                     // recived or sent
+                    time,
+                    body
+                }
+            ]
+        }   
+    ]
+}
+
+--------------
+
+main {
+    {
+        sender,
+        sender_img_path,
+        time,
+        body,
+        votes,
+        user_votes {        // OR
+            {
+                username,
+                vote,
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "HTTP request:response": "html",
+        "__locale": "cpp",
+        "iostream": "cpp"
+    }
+}

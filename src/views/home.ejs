@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" id="home">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="/images/properties.png"/>
+
+    <title>Leaf - Home</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script defer src="/js/jquery.min.js"></script>
+    <script defer src="/js/bootstrap.min.js"></script>
+
+    <!-- Socket  -->
+    <script defer src="/socket.io/socket.io.js"></script>
+
+    <!-- Moment -->
+    <script defer src="/js/moment.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- JS -->
+    <script type='text/javascript'>
+        window.user = <%-JSON.stringify(user)%>
+    </script>
+    <script defer src="/js/main.js"></script>
+    
+</head>
+<body class="bg-succss">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-light">
+        <a class="navbar-brand text-success" href="/">
+            <img src="/images/properties.png" width="30" height="30" class="d-inline-block align-top">
+            Leaf
+        </a>
+
+        <% if (user) { %> <!-- WITH PROFILE -->
+            <div class="collapse navbar-collapse" id="navbarItems">
+                <ul class="navbar-nav mr-auto ml-3">
+                    <li class="nav-item mr-1"><!-- For ACTIVE use font-weigt-bold -->
+                        <a class="nav-link text-success active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item mr-1">
+                        <a class="nav-link text-success" href="/discover">Discover</a>
+                    </li>
+                </ul>
+            </div>
+
+            <a class="btn btn-outline-success ml-auto mr-3" href="/profile">
+                <img class="d-inline-block align-top mr-lg-2 rounded-circle" src="<%= user.imgPath || '/images/profile-picture.jpg' %>" width="25" height="25">
+                <span class="mr-1 d-none d-lg-inline"><%= user.name %></span>
+            </a>
+            <a class="btn btn-outline-<%= user.notifications ? 'danger' : 'success' %> " href="/chat">
+                <!-- WHEN MESSAGE RECEIVED: CHANGE <A> COLOR || FILL THE SVG  || BADGE -->
+                <svg class="bi bi-chat mb-1" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.678 11.894a1 1 0 01.287.801 10.97 10.97 0 01-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 01.71-.074A8.06 8.06 0 008 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 01-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 00.244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 01-2.347-.306c-.52.263-1.639.742-3.468 1.105z" clip-rule="evenodd"/>
+                </svg>
+                <!-- <span class="badge badge-danger">9</span> -->
+            </a>
+            <a class="btn btn-outline-success ml-3 d-lg-none" href="/discover">
+                <svg class="bi bi-search mb-1" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+                </svg>
+            </a>
+        <% } else { %> <!-- WITH PROFILE -->
+            <a class="btn btn-outline-success ml-auto" href="/login">
+                <svg class="bi bi-lock-fill mb-1" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="11" height="9" x="2.5" y="7" rx="2"/>
+                    <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z" clip-rule="evenodd"/>
+                </svg>
+                Enter
+            </a>
+        <% } %> <!-- WITHOUT PROFILE-->
+
+    </nav><!-- NAVBAR -->
+
+    <!-- MAX LENGTH FOR POST -->
+    <!-- MAKE ADMIN ACCOUNT AND MANAGEMENT SYSTEM {admin: true}-->
+    <!-- MAKE POSTS DIMISSABLE FOR ADMIN -->
+    <section class="container-md">
+        <% if (user) { %>
+            <div class="col col-lg-8 mx-auto bg-light rounded-lg mt-3">
+                <form class=" form-inline py-3" id="post-form" autocomplete="off" action="javascript: setTimeout(()=>{location.reload();}, 100)">
+                    <!-- <span class="text-muted position-absolute" id="word-counter"><small>200</small></span> -->
+                    
+                    <input class="form-control col-sm-9 col-md-10 ml-sm-3 ml-md-0" type="text" placeholder="Say something..." id="post-text" value="">
+
+                    <button class="btn btn-success ml-auto mt-3 mt-sm-0" type="submit" id="post-submit">
+                        <svg class="bi bi-envelope-fill mb-1 mr-2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M.05 3.555L8 8.414l7.95-4.859A2 2 0 0014 2H2A2 2 0 00.05 3.555zM16 4.697l-5.875 3.59L16 11.743V4.697zm-.168 8.108L9.157 8.879 8 9.586l-1.157-.707-6.675 3.926A2 2 0 002 14h12a2 2 0 001.832-1.195zM0 11.743l5.875-3.456L0 4.697v7.046z"/>
+                        </svg>
+                        Post
+                    </button>
+                </form>
+            </div>
+
+            <!-- POST -->
+            <div class="col col-md-10 col-lg-8 mx-auto rounded-lg mt-3" id="post-container">
+                <% if (posts.length < 1) { %>
+                    <span id="no-posts">
+                        <div class="mx-auto d-flex bg-light p-4 rounded-circle mt-5" style="height: 150px; width: 150px;">
+                            <img class="m-auto" src="/images/autumn.png" height="75" width="75">
+                        </div>
+                        <h1 class="text-white text-center mt-5">Leaves are growing...</h1>
+                        <h4 class="text-white-50 text-center ">Nothing here yet.</h4>
+                    </span>
+                <% } else { %>  
+                    <% for (const post of posts.reverse()) { %> 
+                        <div class="py-3 col col-lg-10 mx-auto post" id="<%= post._id %>">
+                            <div class="toast">
+                                <div class="toast-header">
+                                    <img src="<%= user.imgPath || '/images/profile-picture.jpg' %>" class="rounded mr-2" height="20" width="20">
+                                    <strong class="mr-auto"><a class="profile-link" href="/user/<%= post.username %> "><%= post.username %></a></strong>
+                                    <small><%= moment(post.time).fromNow() %> </small>
+                                </div>
+                                <div class="toast-body pb-0">
+                                <%= post.body %>
+                                </div>
+                                <hr class="mb-0">
+                                <div>
+                                    <% let type = ''; %> 
+                                    <% for (const vote of post.userVotes) if (vote.user == user.username) type = vote.type; %> 
+                                    <button class="btn btn-link text-muted pr-1 upvote <%= type === 'upvoted' ? type : '' %> ">
+                                        <svg class="bi bi-shift-fill mb-2 align-baselin" data-rotate="90" width="1em" height="1em" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M7.27 2.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v3a1 1 0 01-1 1h-5a1 1 0 01-1-1v-3H1.654C.78 10.5.326 9.455.924 8.816L7.27 2.047z" clip-rule="evenodd"/>
+                                        </svg> 
+                                    </button>
+                                    <span class="mx-1 vote <%= type  %> "><%= post.votes %></span>
+                                    <button class="btn btn-link text-muted pl-1 downvote <%= type === 'downvoted' ? type : ''%> ">
+                                        <svg class="bi bi-shift-fill rotate align-baseline" width="1em" height="1em" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M7.27 2.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v3a1 1 0 01-1 1h-5a1 1 0 01-1-1v-3H1.654C.78 10.5.326 9.455.924 8.816L7.27 2.047z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> <!-- POST -->
+                <% } %> 
+            </div>
+        <% }  else { %> 
+            <!-- IF NO LOGIN -->
+
+        <% } %>
+    </section> 
+    
+</body>
+</html>

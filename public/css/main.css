@@ -1,0 +1,77 @@
+body{
+    background: #28a745;
+    background: linear-gradient(90deg, rgba(90,207,41,1) 0%, rgba(40,167,64,1) 50%, rgba(21,200,109,1) 100%);
+    /*overflow: hidden */
+}
+.navbar ul li .active{
+    font-weight: bold;
+}
+
+.navbar ul li .btn.active{
+    background-color: #28a745;
+    color: white;
+}
+
+.toast{
+    opacity: 1;
+    width: 100% !important;
+    max-width: none;
+}
+
+.rotate{
+    transform: rotate(180deg);
+}
+
+.profile-link,
+.profile-link:hover{
+    color: inherit;
+    text-decoration: none;
+}
+
+.upvoted svg,
+.upvoted{
+    fill: orangered;
+    color: orangered;
+}
+
+.downvoted svg,
+.downvoted{
+    fill: royalblue;
+    color: royalblue;
+}
+
+#home #word-counter{
+    z-index: 1;
+    right: 145px;
+}
+
+#discover section form .input-group-prepend .input-group-text{
+    font-size: 1.25rem !important;
+}
+
+#chat .btn-link{
+    color: black;
+    text-decoration: none;
+}
+
+#chat .media .badge{
+    font-size: 1rem;
+}
+
+#message-canvaas {
+    height: 73vh;
+    overflow-y: scroll;
+}
+
+#status404 h1{
+    font-size: 10rem;
+    font-weight: bold;
+}
+
+#username-receiver{
+    display: none;
+}
+
+#chat #no-chats a {
+    color: inherit;
+}
