@@ -1,2 +1,1 @@
-web: npm i 
-web: npm start
+web: node run app.js
