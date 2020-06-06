@@ -20,12 +20,11 @@ This application has being built with:
 
 To do list/bug fixes:
 -
-- POST BUG: doesn't write on database
 - BUG: when a message is received and the user is on the single chat page, the message isn't count as read
 - Login/Register controls (password length, check for already used emails/usernames)
 - E-mail Verification
 - Mobile-friendly
-- Fix timing problems(when sending posts/messages)
+- ? Fix timing problems(when sending posts/messages)
 - Modify profile
 - Menage user images
 - add 404 buttons
