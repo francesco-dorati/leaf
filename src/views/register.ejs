@@ -9,11 +9,15 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <script async src="/js/jquery.min.js"></script>
-    <script async src="/js/bootstrap.min.js"></script>
+    <script defer src="/js/jquery.min.js"></script>
+    <script defer src="/js/bootstrap.min.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="/css/authentication.css">
+
+    <!-- JS -->
+    <script defer src="/js/authentication.js"></script>
+
 </head>
 <body>
     <section class="container d-flex align-items-center flex-column" style="height: 100vh;">
@@ -59,11 +63,14 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="validatedInputGroupPrepend">@</span>
                             </div>
-                            <input type="text" id="username" name="username" class="form-control" required>
+                            <input type="text" id="username" name="username" class="form-control rounded-right" required>
+                            <div class="valid-feedback">
+                                Username available.
+                            </div>
+                            <div class="invalid-feedback">
+                                Username already taken.
+                            </div>
                           </div>
-                    
-                        <div class="invalid-feedback">
-                        </div>
                     </div>
     
                     <!--Email-->
@@ -71,6 +78,7 @@
                         <label for="email">Email </label>
                         <input class="form-control" type="email" id="email" name="email" required>
                         <div class="invalid-feedback">
+                            This email is already registered, go to <a href="/login">login</a>.
                         </div>
                     </div>
 
