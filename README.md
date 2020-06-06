@@ -27,4 +27,4 @@ To do list/bug fixes:
 - Modify profile
 - Menage user images
 - add 404 buttons
-
+- add /admin route
