@@ -23,6 +23,7 @@ To do list/bug fixes:
 - BUG: when a message is received and the user is on the single chat page, the message isn't count as read
 - Login/Register controls (password length, check for already used emails/usernames)
 - E-mail Verification
+- Mobile-friendly
 - Fix timing problems(when sending posts/messages)
 - Modify profile
 - Menage user images
