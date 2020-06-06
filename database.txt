@@ -22,8 +22,8 @@ user {
             ]
         }   
     ]
-notifications,
-code,
+    notifications,
+    code,
 }
 
 --------------
