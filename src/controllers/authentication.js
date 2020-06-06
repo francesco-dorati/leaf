@@ -13,7 +13,6 @@ const controller = () => {
     const {
       name, surname, username, email, password, code,
     } = req.body;
-    debug(code);
     const url = 'mongodb+srv://admin:admin@leaf-8y7iy.mongodb.net/test?retryWrites=true&w=majority';
     const dbName = 'Leaf';
     const client = new MongoClient(url, { useNewUrlParser: true });

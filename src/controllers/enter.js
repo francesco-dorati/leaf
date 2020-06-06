@@ -1,5 +1,6 @@
-const debug = require('debug')('app:book.controller');
-// const chalk = require('chalk');
+const debug = require('debug')('app:enter.controller');
+const chalk = require('chalk');
+const util = require('util');
 
 const controller = () => {
   debug('Enter Controller');
@@ -8,13 +9,18 @@ const controller = () => {
     res.render('login');
   };
 
-  const registerController = (req, res) => {
+  const registerGetController = (req, res) => {
     res.render('register');
+  };
+
+  const registerPostController = (req, res) => {
+    res.render('register_password');
   };
 
   return {
     loginController,
-    registerController,
+    registerGetController,
+    registerPostController,
   };
 };
 
