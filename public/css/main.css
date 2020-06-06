@@ -78,7 +78,13 @@ body{
 
 #no-login .btn:hover  img {
     filter: invert(100%);
-}   
+    transition: filter .15s
+}
+
+#no-login .btn  img {
+    transition: filter .15s
+}
+
 #no-login h1.display-2 {
     font-weight: 600;
 }
