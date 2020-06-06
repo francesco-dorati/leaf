@@ -75,3 +75,10 @@ body{
 #chat #no-chats a {
     color: inherit;
 }
+
+#no-login .btn:hover  img {
+    filter: invert(100%);
+}   
+#no-login h1.display-2 {
+    font-weight: 600;
+}
