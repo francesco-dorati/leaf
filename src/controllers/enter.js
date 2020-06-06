@@ -14,7 +14,7 @@ const controller = () => {
   };
 
   const registerPostController = (req, res) => {
-    res.render('register_password');
+    res.render('register_password', { ...req.body });
   };
 
   return {
