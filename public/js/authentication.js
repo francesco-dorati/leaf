@@ -6,10 +6,12 @@ const username = $('#username');
 const email = $('#email');
 const password = $('#password');
 const repeatPassword = $('#repeat_password');
-
+const submit = $('#submit');
+let usernameValid = true;
+let emailValid = true;
 
 $(() => {
-  // ADD LENGTH CHECK ----------------------------------------------------------------
+/* USERNAME */ // ADD LENGTH CHECK ----------------------------------------------------------------
   usernameForm.on('focusout', () => {
     if (username.val()) {
       $.ajax({
@@ -19,13 +21,24 @@ $(() => {
         },
         method: 'POST',
         success: (valid) => {
-          if (valid) username.removeClass('is-invalid').addClass('is-valid');
-          else username.removeClass('is-valid').addClass('is-invalid');
+          if (valid) {
+            usernameValid = true;
+            username.addClass('is-valid');
+            if (emailValid) submit.attr('disabled', false);
+          } else {
+            usernameValid = false;
+            username.addClass('is-invalid');
+            submit.attr('disabled', true);
+          }
         },
       });
     }
   });
+  usernameForm.on('keyup', () => {
+    username.removeClass('is-invalid').removeClass('is-valid');
+  });
 
+  /* EMAIL */ // ADD EMAIL CHECK --> REGEX
   emailForm.on('focusout', () => {
     if (email.val()) {
       $.ajax({
@@ -35,11 +48,20 @@ $(() => {
         },
         method: 'POST',
         success: (valid) => {
-          if (valid) email.removeClass('is-invalid');
-          else email.addClass('is-invalid');
+          if (valid) {
+            emailValid = true;
+            email.removeClass('is-invalid');
+            if (usernameValid) submit.attr('disabled', false);
+          } else {
+            emailValid = false;
+            email.addClass('is-invalid');
+            submit.attr('disabled', true);
+          }
         },
       });
     }
   });
-  
+  emailForm.on('keyup', () => {
+    email.removeClass('is-invalid');
+  });
 });
