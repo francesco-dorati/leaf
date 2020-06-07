@@ -85,6 +85,6 @@ body{
     transition: filter .15s
 }
 
-#no-login h1.display-2 {
+#no-login h1 {
     font-weight: 600;
 }
