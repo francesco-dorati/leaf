@@ -13,7 +13,6 @@ const controller = () => {
     const {
       name, surname, username, email, password, code,
     } = req.body;
-    debug(code);
     const url = 'mongodb+srv://admin:admin@leaf-8y7iy.mongodb.net/test?retryWrites=true&w=majority';
     const dbName = 'Leaf';
     const client = new MongoClient(url, { useNewUrlParser: true });
@@ -55,11 +54,53 @@ const controller = () => {
     }
   };
 
+  const usernameController = (req, res) => {
+    const url = 'mongodb+srv://admin:admin@leaf-8y7iy.mongodb.net/test?retryWrites=true&w=majority';
+    const dbName = 'Leaf';
+    const client = new MongoClient(url, { useNewUrlParser: true });
+    // debug(chalk.bold.red(util.inspect(user)));
+    client.connect(async (err) => {
+      if (err) debug(err);
+      const collection = client.db(dbName).collection('users');
+      debug('Connected to Server');
+
+      const { username } = req.body;
+      const result = await collection.findOne({ username });
+
+      // debug(!result);
+      res.send(!result);
+
+      client.close();
+    });
+  };
+
+  const emailController = (req, res) => {
+    const url = 'mongodb+srv://admin:admin@leaf-8y7iy.mongodb.net/test?retryWrites=true&w=majority';
+    const dbName = 'Leaf';
+    const client = new MongoClient(url, { useNewUrlParser: true });
+    // debug(chalk.bold.red(util.inspect(user)));
+    client.connect(async (err) => {
+      if (err) debug(err);
+      const collection = client.db(dbName).collection('users');
+      debug('Connected to Server');
+
+      const { email } = req.body;
+      const result = await collection.findOne({ email });
+
+      // debug(!result);
+      res.send(!result);
+
+      client.close();
+    });
+  };
+
   return {
     registerController,
     loginController,
     logoutController,
     authenticationController,
+    usernameController,
+    emailController,
   };
 };
 

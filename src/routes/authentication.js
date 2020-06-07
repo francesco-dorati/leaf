@@ -7,7 +7,7 @@ const authentication = express.Router();
 const router = () => {
   debug('Athentication Router');
   const {
-    registerController, loginController, logoutController,
+    registerController, loginController, logoutController, usernameController, emailController,
   } = controller();
 
   /* REGISTER */
@@ -22,6 +22,13 @@ const router = () => {
   authentication.route('/logout')
     .get(logoutController);
 
+  /* USERNAME */
+  authentication.route('/username')
+    .post(usernameController);
+
+  /* EMAIL */
+  authentication.route('/email')
+    .post(emailController);
 
   return authentication;
 };
