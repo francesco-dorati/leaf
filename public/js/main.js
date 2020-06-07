@@ -14,7 +14,6 @@ console.log(user);
 
 
 $(() => {
-
   postSubmit.on('click', () => {
     if (postText.val() != '' && postText.val() != ' '){
       socket.emit('post-submit', {
