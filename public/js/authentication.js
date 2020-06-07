@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const usernameForm = $('#username-form');
 const emailForm = $('#email-form');
 const passwordForm = $('#password-form');
