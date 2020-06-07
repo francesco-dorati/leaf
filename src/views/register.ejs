@@ -9,11 +9,15 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <script async src="/js/jquery.min.js"></script>
-    <script async src="/js/bootstrap.min.js"></script>
+    <script defer src="/js/jquery.min.js"></script>
+    <script defer src="/js/bootstrap.min.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="/css/authentication.css">
+
+    <!-- JS -->
+    <script defer src="/js/authentication.js"></script>
+
 </head>
 <body>
     <section class="container d-flex align-items-center flex-column" style="height: 100vh;">
@@ -31,7 +35,7 @@
             <!--Register-->
             <div class="col-6 mx-auto mb-auto mt-5 pb-5">
     
-                <form method="post" action="/authentication/register">
+                <form method="post" action="/register">
                     <div class="form-row">
                         <!--Name-->
                         <div class="form-group col-md-6" id="name-form">
@@ -43,7 +47,7 @@
                     
                         <!--Surname-->
                         <div class="form-group col-md-6" id="name-form">
-                            <label for="name">Surame</label>
+                            <label for="name">Surname</label>
                             <input class="form-control" type="text" id="surname" name="surname" required>
                             <div class="invalid-feedback">
                             </div>
@@ -59,33 +63,19 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="validatedInputGroupPrepend">@</span>
                             </div>
-                            <input type="text" id="username" name="username" class="form-control" required>
+                            <input type="text" id="username" name="username" class="form-control rounded-right" required>
+                            <div class="valid-feedback">
+                                Username available.
+                            </div>
+                            <div class="invalid-feedback">
+                            </div>
                           </div>
-                    
-                        <div class="invalid-feedback">
-                        </div>
                     </div>
     
                     <!--Email-->
                     <div class="form-group" id="email-form">
                         <label for="email">Email </label>
                         <input class="form-control" type="email" id="email" name="email" required>
-                        <div class="invalid-feedback">
-                        </div>
-                    </div>
-    
-                    <!--Password-->
-                    <div class="form-group" id="password-form">
-                        <label for="password">Password</label>
-                        <input class="form-control" type="password" id="password" name="password" required>
-                        <div class="invalid-feedback">
-                        </div>
-                    </div>
-    
-                    <!--Repeat Password-->
-                    <div class="form-group" id="repeat-password-form">
-                        <label for="rep-password">Repeat Passwords</label>
-                        <input class="form-control" type="password" id="repeat-password" required>
                         <div class="invalid-feedback">
                         </div>
                     </div>

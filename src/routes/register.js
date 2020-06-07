@@ -6,10 +6,13 @@ const login = express.Router();
 
 const router = () => {
   debug('Login Route');
-  const { registerController } = controller();
+  const { registerGetController, registerPostController } = controller();
 
   login.route('/')
-    .get(registerController);
+    .get(registerGetController);
+
+  login.route('/')
+    .post(registerPostController);
 
   return login;
 };
