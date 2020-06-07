@@ -69,6 +69,7 @@ $(() => {
             } else {
               emailValid = false;
               email.addClass('is-invalid');
+              emailInvalidFeedback.html('This email is already registered, go to <a href="/login">login</a>.');
               submit.attr('disabled', true);
             }
           },
