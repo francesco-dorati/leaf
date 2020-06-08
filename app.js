@@ -13,7 +13,6 @@ const port = process.env.PORT || 80;
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-// io.origins('*:*') // for latest version
 
 // Internal Modules
 const home = require('./src/routes/home')();
