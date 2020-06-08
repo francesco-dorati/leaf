@@ -7,7 +7,7 @@ const discoverText = $('#discover-text');
 const upvote = $(".upvote");
 const downvote = $(".downvote");
 const postContainer = $('#post-container');
-const socket = io('https://loalhost/');
+const socket = io('https://leaf-project.herokuapp.com:80/');
 moment().format();
 const { user } = window
 console.log(user);
