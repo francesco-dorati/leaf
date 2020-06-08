@@ -9,12 +9,12 @@ This application has being built with:
 -
 - <b>MongoDB</b> for the database
 - <b>Node.js</b> for the backend
-  - <b>Express</b> framework to menage the web app
-  - <b>Socket.io</b> to menage real-time chat and posting
+  - <b>Express</b> framework to manage the web app
+  - <b>Socket.io</b> to manage real-time chat and posting
   - <b>mongodb</b> default node driver
   - <b>Passport</b> for user authentication
   
-- <b>jQuery</b> to menage real time front-end updates.
+- <b>jQuery</b> to manage real time front-end updates.
 
 - <b>Bootstrap 4.0</b> to make the look a little better
 
