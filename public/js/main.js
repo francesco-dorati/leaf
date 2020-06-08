@@ -164,7 +164,7 @@ socket.on('main', (post) => {
 });
 
 // ON CHAT MESSAGE RECEIVED
-socket.on(`${user.username}`, (message) => {
+socket.on(`${user ? user.username : null}`, (message) => {
   console.log(message);
   const chat = $('nav a[href="/chat"]');
   if (!chat.hasClass('btn-outline-danger')){
