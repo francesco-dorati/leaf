@@ -11,7 +11,7 @@ const session = require('express-session');
 const app = express();
 const port = process.env.PORT || 80;
 
-const server = app.listen(port);
+const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 
 // Internal Modules
