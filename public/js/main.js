@@ -9,7 +9,7 @@ const downvote = $(".downvote");
 const postContainer = $('#post-container');
 const socket = io('https://leaf-project.herokuapp.com/');
 moment().format();
-const { user } = window
+const { user } = window;
 console.log(user);
 
 
