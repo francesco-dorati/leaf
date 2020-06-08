@@ -15,6 +15,7 @@ console.log(user);
 
 $(() => {
   postSubmit.on('click', () => {
+    console.log('local worked')
     if (postText.val() != '' && postText.val() != ' '){
       socket.emit('post-submit', {
         username: user.username,

@@ -11,7 +11,8 @@ const socketController = (socket) => {
       username, imgPath, time, body, code,
     } = post;
     let id;
-
+    debug('POSTTT');
+    debug(post);
     const url = 'mongodb+srv://admin:admin@leaf-8y7iy.mongodb.net/test?retryWrites=true&w=majority';
     const dbName = 'Leaf';
     const client = new MongoClient(url, { useNewUrlParser: true });
@@ -26,7 +27,8 @@ const socketController = (socket) => {
       const result = await collection.insertOne(postContent);
 
       id = result.insertedId;
-
+      debug('post succeded');
+      debug(result);
       socket.broadcast.emit('main', {
         _id: id,
         ...post,
